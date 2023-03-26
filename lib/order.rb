@@ -41,26 +41,3 @@ class Order
   end
 end
 
-# require 'twilio-ruby'
-# require_relative './dish'
-# require_relative './customer'
-# require_relative './twillio_client'
-
-# customer = Customer.new("Ana", "+447960854247")
-# account_sid = ENV['TWILIO_ACCOUNT_SID']
-# auth_token = ENV['TWILIO_AUTH_TOKEN']
-# twillio_api = Twilio::REST::Client.new(account_sid, auth_token).messages
-
-# client = TwillioClient.new(twillio_api)
-
-# order = Order.new(customer, client)
-
-# main_course = Dish.new("Carbonara", 15.5)
-# dessert = Dish.new("Ice Cream", 5.5)
-
-# order.add(main_course)
-# order.add(dessert)
-
-# puts "This is your grand total: #{order.grand_total}"
-
-# puts order.finish_order(Time.now)

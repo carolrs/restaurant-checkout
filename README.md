@@ -160,7 +160,7 @@ order_1 = Order.new(customer)
 order_1.add(dish_1)
 order_1.add(dish_2)
 
-twillio = TwillioClient.new(requester_dbl)
+twillio = TwillioClient.new(requester_dbl, twillio_phone)
 
 order_1.finish_order #=>"Thank you, #{name}! Your order was placed and will be delivered before 18:52"
 

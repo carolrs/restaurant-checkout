@@ -67,7 +67,7 @@ describe Order do
         .with(body: body, from: twillio_fone, to: customer.phone)
         .and_return(expected_response_from_twillio_api)
   
-        twillio = TwillioClient.new(fake_twillio_api)
+        twillio = TwillioClient.new(fake_twillio_api, twillio_fone)
 
         order_1 = Order.new(customer, twillio)
         order_1.add(dish_1)

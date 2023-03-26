@@ -1,6 +1,7 @@
 class TwillioClient
-  def initialize(requester) # requester is Twilio::REST::Client.new(account_sid, auth_token).messages
+  def initialize(requester, twillio_phone) # requester is Twilio::REST::Client.new(account_sid, auth_token).messages
     @requester = requester
+    @twillio_phone = twillio_phone
   end
 
   def send_sms(body, phone)
@@ -12,7 +13,7 @@ class TwillioClient
     # send an sms
     message = @requester.create(
       body: body,
-      from: '+447700153097',
+      from: @twillio_phone,
       to: phone
     )
     #return protocol

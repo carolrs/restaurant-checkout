@@ -8,13 +8,14 @@ RSpec.describe TwillioClient do
 
     requester_dbl = double :requester
     phone = "+447999999999"
+    twillio_phone ="+447700153097"
 
     #mocking twillio API (Twilio::REST::Client.new(account_sid, auth_token).messages.create)
     expect(requester_dbl).to receive(:create)
-      .with(body: "My message test", from: "+447700153097", to: phone)
+      .with(body: "My message test", from: twillio_phone, to: phone)
       .and_return(message)
 
-      twillio = TwillioClient.new(requester_dbl)
+      twillio = TwillioClient.new(requester_dbl, twillio_phone)
       expect(twillio.send_sms("My message test", phone)).to eq "some sid"
 
   end

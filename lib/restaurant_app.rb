@@ -36,9 +36,10 @@ class RestaurantApp
     
     account_sid = ENV['TWILIO_ACCOUNT_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']
+    twillio_phone = ENV['REGISTERED_TWILLIO_PHONE']
     twillio_api = Twilio::REST::Client.new(account_sid, auth_token).messages
 
-    client = TwillioClient.new(twillio_api)
+    client = TwillioClient.new(twillio_api, twillio_phone)
 
     order = Order.new(customer, client)
 
