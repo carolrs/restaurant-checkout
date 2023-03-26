@@ -75,7 +75,7 @@ class Order
 end
 
 class TwillioClient
-  def initialize(order)
+  def initialize(twillio_api)
   end
   
   def send_sms
@@ -247,14 +247,15 @@ In order for TwillioClient to work it is necessary to setup
 the following ENV variables:
 
 ```
-account_sid = ENV['TWILIO_ACCOUNT_SID']
-auth_token = ENV['TWILIO_AUTH_TOKEN']
+export TWILIO_ACCOUNT_SID = YOUR_TWILLIO_ACCOUNT_SID
+export TWILIO_AUTH_TOKEN = YOUR_TWILIO_AUTH_TOKEN
+export REGISTERED_TWILLIO_PHONE = YOUR_REGISTERED_PHONE_NUMBER
 ```
 
 * if you are using zsh as your shell script you need to add in `.zprofile`
 * if you are using bash as your shell script you need to add in `.bash_profile`
 
 ```
-TwillioClient.new(Twilio::REST::Client.new(account_sid, auth_token).messages).send_sms("Ola 123 bom dia!", "+447960854247")
+$ ruby lib/restaurant_app.rb
 ```
 
