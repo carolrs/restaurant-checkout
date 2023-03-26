@@ -57,12 +57,14 @@ describe Order do
 
   context "#finish_order" do
     it "should return the sum of all dishes added" do
+      #static time
       time = Time.new(2000,11,11,18,52)
       phone = "+447980752310"
       fake_customer = double :fake_customer, name: "Ana", phone: phone
 
       twillio_fake = double :twillio_fake
-      success_msg = "Thank you, Ana! Your order was placed, the total is: 19.0 and will be delivered before 18:52"
+      #it will return 19:22 because is time + 30 min
+      success_msg = "Thank you, Ana! Your order was placed, the total is: 19.0 and will be delivered before 19:22"
 
       expect(twillio_fake).to receive(:send_sms).with(success_msg, phone).and_return("12345")
 
