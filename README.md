@@ -259,3 +259,10 @@ export REGISTERED_TWILLIO_PHONE = YOUR_REGISTERED_PHONE_NUMBER
 $ ruby lib/restaurant_app.rb
 ```
 
+## 6. Future improvement for app
+• Error handler for not valid phone number.
+• Create a receipt class responsible for formating the list of dishes ordered
+• Create more tests raising errors
+• Include others features: remove dish, print all ordered dishes on restaurant_app.rb
+• Filter the user's choice on restaurant app from name to number (avoiding typos and other problems)
+• Find another way to print objects in a more readble way without a method (Like overwriting toString() in Java) 
