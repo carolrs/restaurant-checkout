@@ -1,6 +1,6 @@
-require 'twillio_client'
+require 'sms_sender'
 
-RSpec.describe TwillioClient do
+RSpec.describe SmsSender do
   it "calls an API to provide a suggested activity" do
 
    #mocking response from twillio API. Mocking the return message created when I send an SMS(confirmation)
@@ -11,12 +11,13 @@ RSpec.describe TwillioClient do
     twillio_phone ="+447700153097"
 
     #mocking twillio API (Twilio::REST::Client.new(account_sid, auth_token).messages.create)
+    #validation for the create method with the right parameters
     expect(requester_dbl).to receive(:create)
       .with(body: "My message test", from: twillio_phone, to: phone)
       .and_return(message)
 
-      twillio = TwillioClient.new(requester_dbl, twillio_phone)
-      expect(twillio.send_sms("My message test", phone)).to eq "some sid"
+      sms_sender = SmsSender.new(requester_dbl, twillio_phone)
+      expect(sms_sender.send_sms("My message test", phone)).to eq "some sid"
 
   end
 end

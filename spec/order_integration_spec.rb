@@ -1,7 +1,7 @@
 require 'order'
 require 'dish'
 require 'customer'
-require 'twillio_client'
+require 'sms_sender'
 
 describe Order do
   context "#grand_total" do
@@ -67,9 +67,9 @@ describe Order do
         .with(body: body, from: twillio_fone, to: customer.phone)
         .and_return(expected_response_from_twillio_api)
   
-        twillio = TwillioClient.new(fake_twillio_api, twillio_fone)
+        sms_sender = SmsSender.new(fake_twillio_api, twillio_fone)
 
-        order_1 = Order.new(customer, twillio)
+        order_1 = Order.new(customer, sms_sender)
         order_1.add(dish_1)
         order_1.add(dish_2)
 

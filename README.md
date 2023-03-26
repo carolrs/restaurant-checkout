@@ -45,7 +45,7 @@ class Dish
 end
 
 class Order
-  def initialize(menu, twillio_client)
+  def initialize(menu, sms_sender)
   #arr dishes ordered
   end
 
@@ -66,7 +66,7 @@ class Order
   end
 end
 
-class TwillioClient
+class SmsSender
   def initialize(twillio_api)
   end
   
@@ -152,7 +152,7 @@ order_1 = Order.new(customer)
 order_1.add(dish_1)
 order_1.add(dish_2)
 
-twillio = TwillioClient.new(requester_dbl, twillio_phone)
+sms_sender = SmsSender.new(requester_dbl, twillio_phone)
 
 order_1.finish_order #=>"Thank you, #{name}! Your order was placed and will be delivered before 18:52"
 
@@ -215,10 +215,10 @@ menu.all_avaiable_dishes # => [fake_dish_1]
 phone = "+447980752310"
 fake_customer = double :fake_customer, name: "Ana", phone: phone
 
-twillio_fake = double :twillio_fake
+twillio_fake = double :sms_sender_fake
 success_msg = "Thank you, Ana! Your order was placed and will be delivered before 18:52"
 
-expect(twillio_fake).to reiceve(:send_sms).with(success_msg, phone).and_return
+expect(sms_sender_fake).to reiceve(:send_sms).with(success_msg, phone).and_return
 
 order = Order(fake_customer)
 fake_dish_1 = double :dish,  name: "Hamburguer", price: 9.0
@@ -235,7 +235,7 @@ order.finish_order #=> success_msg
 
 ## 5. How to execute
 
-In order for TwillioClient to work it is necessary to setup 
+In order for SmsSender to work it is necessary to setup 
 the following ENV variables:
 
 ```

@@ -6,9 +6,9 @@ describe Order do
     it "should print all dishes added" do
     
       fake_customer = double :fake_customer
-      twillio_fake = double :twillio_fake
+      sms_sender_fake = double :twillio_fake
     
-      order = Order.new(fake_customer, twillio_fake)
+      order = Order.new(fake_customer, sms_sender_fake)
       fake_dish_1 = double :dish,  name: "Hamburguer", price: 9.0
       fake_dish_2 = double :dish,  name: "Carbonara", price: 10.0
 
@@ -22,9 +22,9 @@ describe Order do
     it "should remove dishes from order" do
     
       fake_customer = double :fake_customer
-      twillio_fake = double :twillio_fake
+      sms_sender_fake = double :twillio_fake
     
-      order = Order.new(fake_customer, twillio_fake)
+      order = Order.new(fake_customer, sms_sender_fake)
       fake_dish_1 = double :dish,  name: "Hamburguer", price: 9.0
       fake_dish_2 = double :dish,  name: "Carbonara", price: 10.0
 
@@ -40,12 +40,12 @@ describe Order do
       phone = "+447980752310"
       fake_customer = double :fake_customer, name: "Ana", phone: phone
 
-      twillio_fake = double :twillio_fake
+      sms_sender_fake = double :twillio_fake
       #success_msg = "Thank you, Ana! Your order was placed and will be delivered before 18:52"
 
-      #expect(twillio_fake).to receive(:send_sms).with(success_msg, phone).and_return
+      #expect(sms_sender_fake).to receive(:send_sms).with(success_msg, phone).and_return
 
-      order = Order.new(fake_customer, twillio_fake)
+      order = Order.new(fake_customer, sms_sender_fake)
       fake_dish_1 = double :dish,  name: "Hamburguer", price: 9.0
       fake_dish_2 = double :dish,  name: "Carbonara", price: 10.0
 
@@ -62,13 +62,13 @@ describe Order do
       phone = "+447980752310"
       fake_customer = double :fake_customer, name: "Ana", phone: phone
 
-      twillio_fake = double :twillio_fake
+      sms_sender_fake = double :twillio_fake
       #it will return 19:22 because is time + 30 min
       success_msg = "Thank you, Ana! Your order was placed, the total is: 19.0 and will be delivered before 19:22"
 
-      expect(twillio_fake).to receive(:send_sms).with(success_msg, phone).and_return("12345")
+      expect(sms_sender_fake).to receive(:send_sms).with(success_msg, phone).and_return("12345")
 
-      order = Order.new(fake_customer, twillio_fake)
+      order = Order.new(fake_customer, sms_sender_fake)
       fake_dish_1 = double :dish,  name: "Hamburguer", price: 9.0
       fake_dish_2 = double :dish,  name: "Carbonara", price: 10.0
 

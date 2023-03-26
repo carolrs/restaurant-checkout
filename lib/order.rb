@@ -4,9 +4,10 @@ class Order
 
   DELIVERY_TIME = 30 * 60 # 30 minutes in seconds
 
-  def initialize(customer, twillio_client) 
+  #I used sms as parameter because I wanted to make it easy to test.Otherwise would be difficult to mock
+  def initialize(customer, sms_sender) 
     @customer = customer
-    @twillio_client = twillio_client
+    @sms_sender = sms_sender
     @ordered_dishes = []
   end
 
@@ -36,7 +37,7 @@ class Order
     message = "Thank you, #{@customer.name}! Your order was placed, the total "
     .concat("is: #{grand_total} and will be delivered before #{deliver_before.strftime('%H:%M')}")
 
-    @twillio_client.send_sms(message, @customer.phone)
+    @sms_sender.send_sms(message, @customer.phone)
     message
   end
 end

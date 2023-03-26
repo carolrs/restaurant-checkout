@@ -1,7 +1,7 @@
 require 'twilio-ruby'
 require_relative './dish'
 require_relative './customer'
-require_relative './twillio_client'
+require_relative './sms_sender'
 require_relative './order'
 require_relative './dish_availability'
 require_relative './menu'
@@ -14,11 +14,14 @@ class RestaurantApp
     dish_2 = Dish.new("Lasagna", 15.0)
     dish_3 = Dish.new("Hamburguer", 9.0)
     dish_4 = Dish.new("Fish and chips", 11.0)
-    dish_5 = Dish.new("Mince pie", 12.0)
+    dish_5 = Dish.new("Rib-eye Steak", 25.0)
+    dish_6 = Dish.new("Cod fish and rice", 22.0)
+    dish_7 = Dish.new("Smashed potato", 5.0)
+    dish_8 = Dish.new("soup of the day", 7.0)
 
-    dish_list = [dish_1,dish_2,dish_3,dish_4,dish_5]
+    dish_list = [dish_1,dish_2,dish_3,dish_4,dish_5, dish_6, dish_7,dish_8]
 
-    dish_array_available = [dish_1,dish_2,dish_3]
+    dish_array_available = [dish_1,dish_2,dish_3,dish_5]
     
     dish_availability =  DishAvailability.new(dish_array_available)
     
@@ -39,7 +42,7 @@ class RestaurantApp
     twillio_phone = ENV['REGISTERED_TWILLIO_PHONE']
     twillio_api = Twilio::REST::Client.new(account_sid, auth_token).messages
 
-    client = TwillioClient.new(twillio_api, twillio_phone)
+    client = SmsSender.new(twillio_api, twillio_phone)
 
     order = Order.new(customer, client)
 
@@ -97,4 +100,3 @@ class RestaurantApp
 end
 
 RestaurantApp.new.run
-
